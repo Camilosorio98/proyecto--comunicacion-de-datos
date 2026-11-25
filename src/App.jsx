@@ -5,7 +5,7 @@ import {
   Lock, Network, Server, Pause, Play, Layers, SlidersHorizontal, CheckCircle
 } from 'lucide-react';
 import InfraestructuraDespliegue from './components/InfraestructuraDespliegue';
-
+import FormularioContacto from "./components/FormularioContacto";
 export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');
   const [selectedNode, setSelectedNode] = useState('CAM-04');
@@ -528,9 +528,12 @@ export default function App() {
         </section>
       </div>
 
-      {/* 8. SECCIÓN: INFRAESTRUCTURA, CERTIFICADOS Y MENSAJERÍA */}
+      {/* 8. SECCIÓN: INFRAESTRUCTURA */}
       <InfraestructuraDespliegue />
 
+      {/* 9. FORMULARIO DE CONTACTO */}
+      <FormularioContacto />
+      
       {/* FOOTER */}
       <footer className="bg-[#050B14] border-t border-slate-800 py-8 px-4 text-center text-xs text-slate-500">
         <p className="font-semibold text-slate-400 mb-1">Sistema Inteligente de Transporte (ITS-Chía)</p>
