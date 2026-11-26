@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import InfraestructuraDespliegue from './components/InfraestructuraDespliegue';
 import FormularioContacto from "./components/FormularioContacto";
+import Autenticacion from "./components/Autenticacion";
 export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');
   const [selectedNode, setSelectedNode] = useState('CAM-04');
@@ -29,6 +30,8 @@ export default function App() {
   const modulosRef = useRef(null);
   const simuladorRef = useRef(null);
   const seguridadRef = useRef(null);
+  const contactoRef = useRef(null);
+  const accesoRef = useRef(null);
 
   const scrollToSection = (seccion, ref) => {
     setActiveTab(seccion);
@@ -76,22 +79,45 @@ export default function App() {
             </div>
           </div>
 
-          <div className="hidden md:flex items-center space-x-8 text-xs font-medium text-slate-300">
+          <div className="hidden md:flex items-center gap-4 text-xs font-medium text-slate-300">
             <button onClick={() => scrollToSection('inicio', inicioRef)} className={`hover:text-blue-400 transition cursor-pointer ${activeTab === 'inicio' ? 'text-blue-400 font-bold' : ''}`}>Inicio</button>
             <button onClick={() => scrollToSection('problematica', problematicaRef)} className={`hover:text-blue-400 transition cursor-pointer ${activeTab === 'problematica' ? 'text-blue-400 font-bold' : ''}`}>Problemática</button>
             <button onClick={() => scrollToSection('modulos', modulosRef)} className={`hover:text-blue-400 transition cursor-pointer ${activeTab === 'modulos' ? 'text-blue-400 font-bold' : ''}`}>Módulos ITS</button>
             <button onClick={() => scrollToSection('simulador', simuladorRef)} className={`hover:text-blue-400 transition cursor-pointer ${activeTab === 'simulador' ? 'text-blue-400 font-bold' : ''}`}>Simulador</button>
             <button onClick={() => scrollToSection('seguridad', seguridadRef)} className={`hover:text-blue-400 transition cursor-pointer ${activeTab === 'seguridad' ? 'text-blue-400 font-bold' : ''}`}>Seguridad OSI</button>
+            <button onClick={() => scrollToSection("contacto", contactoRef)} className={`hover:text-blue-400 transition cursor-pointer ${activeTab === "contacto" ? "text-blue-400 font-bold" : ""}`}>Contacto</button>
+            <button onClick={() => scrollToSection("acceso", accesoRef)} className={`hover:text-blue-400 transition cursor-pointer ${activeTab === "acceso" ? "text-blue-400 font-bold" : "" }`}>Acceso</button>
           </div>
+             
+             
 
           <div className="flex items-center space-x-3">
+
+<div className="flex items-center gap-2 md:hidden">
+  <button
+    onClick={() => scrollToSection("contacto", contactoRef)}
+    className="rounded-lg border border-slate-600
+               px-3 py-2 text-xs font-medium text-white"
+  >
+    Contacto
+  </button>
+
+  <button
+    onClick={() => scrollToSection("acceso", accesoRef)}
+    className="rounded-lg bg-blue-600
+               px-3 py-2 text-xs font-semibold text-white"
+  >
+    Acceso
+  </button>
+</div>
+
             <span className="hidden lg:flex items-center gap-1.5 bg-emerald-950/60 text-emerald-400 px-3 py-1 rounded-full text-xs border border-emerald-800/50">
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
               Sistema Operativo (99.98%)
             </span>
             <button 
               onClick={() => scrollToSection('simulador', simuladorRef)}
-              className="bg-[#1D4ED8] hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2 shadow-lg shadow-blue-600/30 transition cursor-pointer"
+              className="hidden lg:flex bg-[#1D4ED8] hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2 shadow-lg shadow-blue-600/30 transition cursor-pointer"
             >
               SIMULADOR EN VIVO <ArrowRight className="h-3.5 w-3.5" />
             </button>
@@ -532,7 +558,14 @@ export default function App() {
       <InfraestructuraDespliegue />
 
       {/* 9. FORMULARIO DE CONTACTO */}
-      <FormularioContacto />
+       <div ref={contactoRef} className="scroll-mt-20">
+       <FormularioContacto />
+       </div>
+
+      {/* 10. SECCIÓN: AUTENTICACIÓN */}
+          <div ref={accesoRef} className="scroll-mt-20">
+          <Autenticacion />
+          </div>
       
       {/* FOOTER */}
       <footer className="bg-[#050B14] border-t border-slate-800 py-8 px-4 text-center text-xs text-slate-500">
